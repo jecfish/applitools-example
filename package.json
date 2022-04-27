@@ -1,0 +1,18 @@
+{
+  "name": "applitools-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "dependencies": {},
+  "devDependencies": {
+    "@applitools/eyes-puppeteer": "^1.9.0",
+    "@puppeteer/replay": "^0.1.1",
+    "puppeteer": "^13.6.0"
+  },
+  "scripts": {
+    "start": "node index.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

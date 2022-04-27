@@ -1,0 +1,159 @@
+{
+  "title": "order-a-coffee",
+  "steps": [
+    {
+      "type": "setViewport",
+      "width": 380,
+      "height": 604,
+      "deviceScaleFactor": 1,
+      "isMobile": false,
+      "hasTouch": false,
+      "isLandscape": false
+    },
+    {
+      "type": "navigate",
+      "assertedEvents": [
+        {
+          "type": "navigation",
+          "url": "https://coffee-cart.netlify.app/",
+          "title": "Coffee cart"
+        }
+      ],
+      "url": "https://coffee-cart.netlify.app/"
+    },
+    {
+      "type": "click",
+      "target": "main",
+      "selectors": [
+        [
+          "aria/Espresso"
+        ],
+        [
+          "[data-test=Espresso]"
+        ]
+      ],
+      "offsetX": 168.40187072753906,
+      "offsetY": 180.0280532836914
+    },
+    {
+      "type": "click",
+      "target": "main",
+      "selectors": [
+        [
+          "aria/Cappucino"
+        ],
+        [
+          "[data-test=Cappucino]"
+        ]
+      ],
+      "offsetX": 168.40187072753906,
+      "offsetY": 92.24679565429688
+    },
+    {
+      "type": "click",
+      "target": "main",
+      "selectors": [
+        [
+          "aria/Proceed to checkout"
+        ],
+        [
+          "[data-test=checkout]"
+        ]
+      ],
+      "offsetX": 89.1875,
+      "offsetY": 22.796875
+    },
+    {
+      "type": "click",
+      "target": "main",
+      "selectors": [
+        [
+          "aria/Name"
+        ],
+        [
+          "#name"
+        ]
+      ],
+      "offsetX": 115.015625,
+      "offsetY": 26.2109375
+    },
+    {
+      "type": "change",
+      "target": "main",
+      "selectors": [
+        [
+          "aria/Name"
+        ],
+        [
+          "#name"
+        ]
+      ],
+      "value": "jane"
+    },
+    {
+      "type": "keyDown",
+      "target": "main",
+      "key": "Tab"
+    },
+    {
+      "type": "keyUp",
+      "target": "main",
+      "key": "Tab"
+    },
+    {
+      "type": "change",
+      "target": "main",
+      "selectors": [
+        [
+          "aria/Email"
+        ],
+        [
+          "#email"
+        ]
+      ],
+      "value": "jane@doe.com"
+    },
+    {
+      "type": "click",
+      "target": "main",
+      "selectors": [
+        [
+          "aria/Promotion message"
+        ],
+        [
+          "#promotion-label"
+        ]
+      ],
+      "offsetX": 157,
+      "offsetY": 26.8203125
+    },
+    {
+      "type": "click",
+      "target": "main",
+      "selectors": [
+        [
+          "aria/Submit"
+        ],
+        [
+          "#submit-payment"
+        ]
+      ],
+      "offsetX": 63.3515625,
+      "offsetY": 27.4296875
+    },
+    {
+      "type": "click",
+      "target": "main",
+      "selectors": [
+        [
+          "aria/Thanks for your purchase. Please check your email for payment."
+        ],
+        [
+          "#app > div.snackbar.success"
+        ]
+      ],
+      "offsetX": 300,
+      "offsetY": 32.1875
+    }
+  ]
+}
