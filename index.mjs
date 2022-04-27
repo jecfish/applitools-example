@@ -8,7 +8,7 @@ import { Eyes, Target, VisualGridRunner } from '@applitools/eyes-puppeteer';
 class Extension extends PuppeteerRunnerExtension {
   async afterEachStep(step, flow) {
     await super.afterEachStep(step, flow);
-    await eyes.check('demo page', Target.window().fully(false));
+    await eyes.check(`recording step: ${step.type}`, Target.window().fully(false));
     console.log(`after step: ${step.type}`);
   }
 }
@@ -42,9 +42,9 @@ await eyes.closeAsync();
 await eyes.abortAsync(); // abort if Eyes were not properly closed
 
 // Manage tests across multiple Eyes instances
-// const testResultsSummary = await visualGridRunner.getAllTestResults()
-// for (const testResultContainer of testResultsSummary) {
-//   const testResults = testResultContainer.getTestResults();
-//   console.log(testResults);
-// }
+const testResultsSummary = await visualGridRunner.getAllTestResults()
+for (const testResultContainer of testResultsSummary) {
+  const testResults = testResultContainer.getTestResults();
+  console.log(testResults);
+}
 
