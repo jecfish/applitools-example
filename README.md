@@ -1,0 +1,1 @@
+An example to extend Applitools with [Puppeteer Replay](https://goo.gle/puppeteer-replay) to capture screenshots, validate and replay the exported user flow JSON file from Chrome DevTools Recorder.
