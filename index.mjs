@@ -4,11 +4,11 @@ import puppeteer from 'puppeteer';
 import fs from 'fs';
 import { Eyes, Target, VisualGridRunner } from '@applitools/eyes-puppeteer';
 
-// extend runner to take screenshot after each step
+// Extend runner to take screenshot after each step
 class Extension extends PuppeteerRunnerExtension {
   async afterEachStep(step, flow) {
     await super.afterEachStep(step, flow);
-    await eyes.check('demo page', Target.window().fully(false));
+    await eyes.check(`recording step: ${step.type}`, Target.window().fully(false));
     console.log(`after step: ${step.type}`);
   }
 }
@@ -23,14 +23,19 @@ const name = 'Chrome Recorder Demo';
 const visualGridRunner = new VisualGridRunner({ testConcurrency: 5 });
 const eyes = new Eyes(visualGridRunner);
 
-await setupEyes(eyes, name, apiKey);
-await eyes.open(page, "Order a coffee", "My first Applitools Chrome Recorder test!");
 
-// Puppeteer: Read the JSON user flow
+await setupEyes(eyes, name, apiKey);
+await eyes.open(page, {
+  appName: "Order a coffee",
+  testName: "My First Applitools Chrome Recorder test!",
+  visualGridOptions: { "ieV2": true }
+});
+
+// Puppeteer: read the JSON user flow
 const recordingText = fs.readFileSync('./order-a-coffee.json', 'utf8');
 const recording = parse(JSON.parse(recordingText));
 
-// Puppeteer: Create a runner and execute the script
+// Puppeteer: create a runner and execute the script
 const runner = await createRunner(recording, new Extension(browser, page, 7000));
 
 // Puppeteer: clean up
@@ -41,10 +46,10 @@ await browser.close();
 await eyes.closeAsync();
 await eyes.abortAsync(); // abort if Eyes were not properly closed
 
-// Manage tests across multiple Eyes instances
-// const testResultsSummary = await visualGridRunner.getAllTestResults()
-// for (const testResultContainer of testResultsSummary) {
-//   const testResults = testResultContainer.getTestResults();
-//   console.log(testResults);
-// }
+// Applitools: Manage tests across multiple Eyes instances
+const testResultsSummary = await visualGridRunner.getAllTestResults()
+for (const testResultContainer of testResultsSummary) {
+  const testResults = testResultContainer.getTestResults();
+  console.log(testResults);
+}
 
