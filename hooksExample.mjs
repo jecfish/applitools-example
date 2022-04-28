@@ -12,7 +12,7 @@ const page = await browser.newPage();
 let visualGridRunner = null;
 let eyes = null;
 
-// extend runner to initialize Eyes before all steps, take screenshot after each step, and close Eyes after all steps
+// Extend runner to initialize Eyes before all steps, take screenshot after each step, and close Eyes after all steps
 class Extension extends PuppeteerRunnerExtension {
   async beforeAllSteps(flow) {
     await super.beforeAllSteps(flow);
@@ -26,7 +26,7 @@ class Extension extends PuppeteerRunnerExtension {
 
     await setupEyes(eyes, name, apiKey);
 
-    // start the visual test
+    // Applitools: start the visual test
     await eyes.open(page, {
       appName: "Order a coffee",
       testName: "My first Applitools Chrome Recorder test!",
@@ -37,7 +37,7 @@ class Extension extends PuppeteerRunnerExtension {
   async afterEachStep(step, flow) {
     await super.afterEachStep(step, flow);
     
-    // capture a full-page screenshot
+    // Applitools: capture a full-page screenshot
     await eyes.check(`recording step: ${step.type}`, Target.window().fully(true))
     console.log(`after step: ${step.type}`);
   }
@@ -53,18 +53,18 @@ class Extension extends PuppeteerRunnerExtension {
   }
 }
 
-// Puppeteer: Read the JSON user flow
+// Puppeteer: read the JSON user flow
 const recordingText = fs.readFileSync('./order-a-coffee.json', 'utf8');
 const recording = parse(JSON.parse(recordingText));
 
-// Puppeteer: Create a runner and execute the script
+// Puppeteer: create a runner and execute the script
 const runner = await createRunner(recording, new Extension(browser, page, 7000));
 
 // Puppeteer: clean up
 await runner.run();
 await browser.close();
 
-// Manage tests across multiple Eyes instances
+// Applitools: manage tests across multiple Eyes instances
 const testResultsSummary = await visualGridRunner.getAllTestResults()
 for (const testResultContainer of testResultsSummary) {
   const testResults = testResultContainer.getTestResults();

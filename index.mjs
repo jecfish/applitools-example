@@ -4,7 +4,7 @@ import puppeteer from 'puppeteer';
 import fs from 'fs';
 import { Eyes, Target, VisualGridRunner } from '@applitools/eyes-puppeteer';
 
-// extend runner to take screenshot after each step
+// Extend runner to take screenshot after each step
 class Extension extends PuppeteerRunnerExtension {
   async afterEachStep(step, flow) {
     await super.afterEachStep(step, flow);
@@ -31,11 +31,11 @@ await eyes.open(page, {
   visualGridOptions: { "ieV2": true }
 });
 
-// Puppeteer: Read the JSON user flow
+// Puppeteer: read the JSON user flow
 const recordingText = fs.readFileSync('./order-a-coffee.json', 'utf8');
 const recording = parse(JSON.parse(recordingText));
 
-// Puppeteer: Create a runner and execute the script
+// Puppeteer: create a runner and execute the script
 const runner = await createRunner(recording, new Extension(browser, page, 7000));
 
 // Puppeteer: clean up
@@ -46,7 +46,7 @@ await browser.close();
 await eyes.closeAsync();
 await eyes.abortAsync(); // abort if Eyes were not properly closed
 
-// Manage tests across multiple Eyes instances
+// Applitools: Manage tests across multiple Eyes instances
 const testResultsSummary = await visualGridRunner.getAllTestResults()
 for (const testResultContainer of testResultsSummary) {
   const testResults = testResultContainer.getTestResults();
