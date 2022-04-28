@@ -3,7 +3,6 @@ import { setupEyes } from './applitools.config.mjs';
 import puppeteer from 'puppeteer';
 import fs from 'fs';
 import { Eyes, Target, VisualGridRunner } from '@applitools/eyes-puppeteer';
-import { config } from 'process';
 
 // extend runner to take screenshot after each step
 class Extension extends PuppeteerRunnerExtension {
@@ -29,13 +28,11 @@ await setupEyes(eyes, name, apiKey);
 await eyes.open(page, {
   appName: "Order a coffee",
   testName: "My First Applitools Chrome Recorder test!",
-  visualGridOptions: {
-    "ieV2": true
-  }
+  visualGridOptions: { "ieV2": true }
 });
 
 // Puppeteer: Read the JSON user flow
-const recordingText = fs.readFileSync('./order-coffe.json', 'utf8');
+const recordingText = fs.readFileSync('./order-a-coffee.json', 'utf8');
 const recording = parse(JSON.parse(recordingText));
 
 // Puppeteer: Create a runner and execute the script
