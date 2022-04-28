@@ -2,6 +2,15 @@
   "title": "order-a-coffee",
   "steps": [
     {
+      "type": "setViewport",
+      "width": 380,
+      "height": 604,
+      "deviceScaleFactor": 1,
+      "isMobile": false,
+      "hasTouch": false,
+      "isLandscape": false
+    },
+    {
       "type": "navigate",
       "assertedEvents": [
         {
@@ -11,15 +20,6 @@
         }
       ],
       "url": "https://coffee-cart.netlify.app/"
-    },
-    {
-      "type": "setViewport",
-      "width": 380,
-      "height": 604,
-      "deviceScaleFactor": 1,
-      "isMobile": false,
-      "hasTouch": false,
-      "isLandscape": false
     },
     {
       "type": "click",
