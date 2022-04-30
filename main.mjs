@@ -19,11 +19,11 @@ const browser = await puppeteer.launch({ headless: false }); // or set it to tru
 const page = await browser.newPage();
 
 // Aplitools: launch visual grid runner & eyes
-const apiKey = process.env.APPLITOOLS_API_KEY || 'REPLACE_YOUR_APPLITOOLS_API_KEY';
-const name = 'Chrome Recorder Demo';
 const visualGridRunner = new VisualGridRunner({ testConcurrency: 5 });
 const eyes = new Eyes(visualGridRunner);
 
+const apiKey = process.env.APPLITOOLS_API_KEY || 'REPLACE_YOUR_APPLITOOLS_API_KEY';
+const name = 'Chrome Recorder Demo';
 
 await setupEyes(eyes, name, apiKey);
 await eyes.open(page, {
