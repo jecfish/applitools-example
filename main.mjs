@@ -1,3 +1,4 @@
+import url from 'url';
 import { createRunner, parse, PuppeteerRunnerExtension } from '@puppeteer/replay';
 import { setupEyes } from './applitools.config.mjs';
 import puppeteer from 'puppeteer';
@@ -26,20 +27,26 @@ const eyes = new Eyes(visualGridRunner);
 
 await setupEyes(eyes, name, apiKey);
 await eyes.open(page, {
-  appName: "Order a coffee",
-  testName: "My First Applitools Chrome Recorder test!",
-  visualGridOptions: { "ieV2": true }
+  appName: 'Order a coffee',
+  testName: 'My First Applitools Chrome Recorder test!',
+  visualGridOptions: { ieV2: true }
 });
 
 // Puppeteer: read the JSON user flow
 const recordingText = fs.readFileSync('./order-a-coffee.json', 'utf8');
-const recording = parse(JSON.parse(recordingText));
+const flow = parse(JSON.parse(recordingText));
 
-// Puppeteer: create a runner and execute the script
-const runner = await createRunner(recording, new Extension(browser, page, 7000));
+// Puppeteer: Replay the script
+export async function run(extension) {
+  const runner = await createRunner(flow, extension);
+  await runner.run();
+}
+
+if (process && import.meta.url === url.pathToFileURL(process.argv[1]).href) {
+  await run(new Extension(browser, page, 7000));
+}
 
 // Puppeteer: clean up
-await runner.run();
 await browser.close();
 
 // Applitools: clean up
