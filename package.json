@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "main.mjs",
-  "dependencies": {},
+  "dependencies": {
+    "dotenv": "^16.0.0"
+  },
   "devDependencies": {
     "@applitools/eyes-puppeteer": "^1.9.0",
     "@puppeteer/replay": "^0.1.1",

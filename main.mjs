@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import url from 'url';
 import { createRunner, parse, PuppeteerRunnerExtension } from '@puppeteer/replay';
 import { setupEyes } from './applitools.config.mjs';
